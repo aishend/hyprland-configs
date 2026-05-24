@@ -3,22 +3,39 @@
     "position": "top",
     "height": 28,
     "spacing": 0,
-    "modules-left": ["hyprland/workspaces"],
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["power-profiles-daemon", "pulseaudio", "backlight", "network", "battery"],
+    "modules-right": ["mpris", "power-profiles-daemon", "pulseaudio", "bluetooth", "network", "battery"],
 
+    // Workspace switcher
     "hyprland/workspaces": {
         "format": "{name}",
         "on-click": "activate"
     },
+
+    // Active window title
+    "hyprland/window": {
+        "format": "󱂬 {title}",
+        "max-length": 30
+    },
+
+    // Media player info (Click to play/pause)
+    "mpris": {
+        "format": "󰎈 {title}",
+        "format-paused": "󰏤 {title}",
+        "max-length": 30,
+        "on-click": "playerctl play-pause"
+    },
+
+    // Clock
     "clock": {
-        "format": "{:%H:%M}",
+        "format": "{:%a %d %b - %H:%M}",
         "tooltip": false
     },
+
+    // Power profiles
     "power-profiles-daemon": {
         "format": "{icon}",
-        "tooltip": true,
-        "tooltip-format": "Modo: {profile}",
         "format-icons": {
             "default": "",
             "performance": " Perf",
@@ -26,22 +43,32 @@
             "power-saver": " Eco"
         }
     },
+
+    // Audio
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-muted": "󰝟",
         "format-icons": ["󰕿", "󰖀", "󰕾"],
         "on-click": "pavucontrol"
     },
-    "backlight": {
-        "format": "{icon} {percent}%",
-        "format-icons": ["󰃞", "󰃟", "󰃠"]
+
+    // Bluetooth (Shows icon when disconnected, device name when connected)
+    "bluetooth": {
+        "format": "",
+        "format-connected": " {device_alias}",
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        "on-click": "blueman-manager"
     },
+
+    // Network (Shows Wi-Fi name/SSID next to the icon)
     "network": {
-        "format-wifi": "",
-        "format-ethernet": "󰈀",
-        "format-disconnected": "󰤮",
+        "format-wifi": " {essid}",
+        "format-ethernet": "󰈀 Wired",
+        "format-disconnected": "󰤮 Disconnected",
         "on-click": "nm-connection-editor"
     },
+
+    // Battery
     "battery": {
         "interval": 30,
         "format": "{icon} {capacity}%",

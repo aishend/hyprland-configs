@@ -1,51 +1,49 @@
+/* Global configuration */
 * {
     font-family: "JetBrainsMono Nerd Font", monospace;
     font-size: 13px;
-    padding: 0 8px;
+    padding: 0 6px;
     margin: 0;
     border: none;
 }
 
+/* Main bar background */
 window#waybar {
     background: #11111b;
     color: #cdd6f4;
     border-bottom: 1px solid #313244;
 }
 
-#workspaces button {
-    color: #45475a;
+/* Workspaces */
+#workspaces { margin-right: 20px; }
+#workspaces button { color: #45475a; }
+#workspaces button.active { color: #89b4fa; border-bottom: 2px solid #89b4fa; }
+
+/* Active Window title and Clock */
+#window { color: #89b4fa; font-style: italic; margin-left: 20px; }
+#clock { color: #fab387; font-weight: bold; }
+
+/* -----------------------------------------------------
+   RIGHT SIDE MODULES
+   Added margins here to increase spacing between them
+----------------------------------------------------- */
+#mpris, #power-profiles-daemon, #pulseaudio, #bluetooth, #network, #battery {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
-#workspaces button.active {
-    color: #89b4fa;
-    border-bottom: 2px solid #89b4fa;
-}
+/* Media player */
+#mpris { color: #cba6f7; font-weight: bold; }
 
-#clock {
-    color: #fab387;
-    font-weight: bold;
-}
-
+/* Energy profiles */
 #power-profiles-daemon.performance { color: #f38ba8; }
 #power-profiles-daemon.balanced { color: #89b4fa; }
 #power-profiles-daemon.power-saver { color: #a6e3a1; }
 
-#battery {
-    color: #9399b2;
-}
+/* Network, Bluetooth, Audio, and Battery modules base colors */
+#pulseaudio, #bluetooth, #network, #battery { color: #bac2de; }
 
-#battery.discharging {
-    color: #fab387;
-}
-
-#battery.charging, #battery.plugged, #battery.full {
-    color: #a6e3a1;
-}
-
-#battery.critical:not(.charging) {
-    color: #f38ba8;
-}
-
-#pulseaudio, #backlight, #network, #power-profiles-daemon {
-    color: #9399b2;
-}
+/* Dynamic battery colors */
+#battery.charging, #battery.plugged { color: #a6e3a1; }
+#battery.discharging { color: #fab387; }
+#battery.critical { color: #f38ba8; }
