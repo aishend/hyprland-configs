@@ -49,7 +49,8 @@
         "format": "{icon} {volume}%",
         "format-muted": "󰝟",
         "format-icons": ["󰕿", "󰖀", "󰕾"],
-        "on-click": "pavucontrol"
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
 
     // Bluetooth (Shows icon when disconnected, device name when connected)
