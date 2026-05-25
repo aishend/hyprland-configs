@@ -5,21 +5,27 @@
     "spacing": 0,
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["mpris", "power-profiles-daemon", "pulseaudio", "bluetooth", "network", "battery"],
+    "modules-right": [
+        "mpris", 
+        "power-profiles-daemon", 
+        "custom/updates", 
+        "pulseaudio", 
+        "bluetooth", 
+        "network", 
+        "battery", 
+        "custom/notification"
+    ],
 
-    // Workspace switcher
     "hyprland/workspaces": {
         "format": "{name}",
         "on-click": "activate"
     },
 
-    // Active window title
     "hyprland/window": {
         "format": "󱂬 {title}",
         "max-length": 30
     },
 
-    // Media player info (Click to play/pause)
     "mpris": {
         "format": "󰎈 {title}",
         "format-paused": "󰏤 {title}",
@@ -27,13 +33,11 @@
         "on-click": "playerctl play-pause"
     },
 
-    // Clock
     "clock": {
         "format": "{:%a %d %b - %H:%M}",
         "tooltip": false
     },
 
-    // Power profiles
     "power-profiles-daemon": {
         "format": "{icon}",
         "format-icons": {
@@ -44,32 +48,37 @@
         }
     },
 
-    // Audio
+    "custom/updates": {
+        "format": "󰚰 {}",
+        "interval": 3600,
+        "exec": "checkupdates | wc -l",
+        "exec-if": "exit 0",
+        "on-click": "hyprctl dispatch exec [float] 'foot -e yay -Syu'",
+        "tooltip": false
+    },
+
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-muted": "󰝟",
         "format-icons": ["󰕿", "󰖀", "󰕾"],
-        "on-click": "pavucontrol",
+        "on-click": "rofi-pulse-select sink",
         "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
 
-    // Bluetooth (Shows icon when disconnected, device name when connected)
     "bluetooth": {
         "format": "",
         "format-connected": " {device_alias}",
         "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-        "on-click": "blueman-manager"
+        "on-click": "rofi-bluetooth"
     },
 
-    // Network (Shows Wi-Fi name/SSID next to the icon)
     "network": {
         "format-wifi": " {essid}",
         "format-ethernet": "󰈀 Wired",
         "format-disconnected": "󰤮 Disconnected",
-        "on-click": "nm-connection-editor"
+        "on-click": "networkmanager_dmenu"
     },
 
-    // Battery
     "battery": {
         "interval": 30,
         "format": "{icon} {capacity}%",
@@ -78,5 +87,26 @@
         "format-discharging": "󰂂 {capacity}%",
         "format-full": "󰁹 100%",
         "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"]
+    },
+
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     }
 }
