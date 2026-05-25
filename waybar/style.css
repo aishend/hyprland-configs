@@ -21,7 +21,7 @@ window#waybar {
 
 /* Active Window title and Clock */
 #window { color: #89b4fa; font-style: italic; margin-left: 20px; }
-#clock { color: #fab387; font-weight: bold; }
+#clock { color: white; font-weight: bold; }
 
 /* -----------------------------------------------------
    RIGHT SIDE MODULES
