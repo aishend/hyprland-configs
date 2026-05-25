@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
 DIRECAO=$1
-
 active=$(hyprctl activewindow -j)
 
-# Se NÃO houver janela ativa ({}) ou se der string vazia:
 if [ "$active" = "{}" ] || [ -z "$active" ]; then
     if [ "$DIRECAO" = "right" ]; then
         hyprctl dispatch workspace r+1
@@ -14,12 +12,22 @@ if [ "$active" = "{}" ] || [ -z "$active" ]; then
     exit 0
 fi
 
-# Se houver janela ativa, o script continua o comportamento normal:
+active_workspace=$(echo "$active" | jq '.workspace.id')
 active_x=$(echo "$active" | jq '.at[0]')
 active_w=$(echo "$active" | jq '.size[0]')
 active_right=$((active_x + active_w))
-active_workspace=$(echo "$active" | jq '.workspace.id')
 
+# Se a janela está no Scratchpad (ID negativo), apenas foca para os lados. Não muda de workspace.
+if [ "$active_workspace" -lt 0 ]; then
+    if [ "$DIRECAO" = "right" ]; then
+        hyprctl dispatch movefocus r
+    elif [ "$DIRECAO" = "left" ]; then
+        hyprctl dispatch movefocus l
+    fi
+    exit 0
+fi
+
+# Comportamento normal para workspaces normais
 if [ "$DIRECAO" = "right" ]; then
     max_right=$(hyprctl clients -j | jq --arg ws "$active_workspace" '[.[] | select(.workspace.id == ($ws | tonumber) and .mapped == true) | .at[0] + .size[0]] | max')
     
