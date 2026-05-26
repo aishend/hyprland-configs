@@ -27,23 +27,35 @@ window#waybar {
 }
 #clock { color: white; font-weight: bold; }
 
-/* Margens de todos os módulos da direita */
-#mpris, 
+/* Leitor de Música Estático (À Esquerda) */
+#mpris { 
+    color: #cba6f7; 
+    font-weight: bold; 
+    margin-left: 30px; 
+}
+
+/* Margens de todos os módulos da direita (Espaçamento Alargado) */
+#cpu,
+#temperature,
+#custom-nvidiagpu,
 #power-profiles-daemon, 
 #pulseaudio, 
 #bluetooth, 
 #network, 
 #battery, 
 #custom-notification {
-    margin-left: 8px;
-    margin-right: 8px;
+    margin-left: 14px;
+    margin-right: 14px;
 }
-
-/* Leitor de Música */
-#mpris { color: #cba6f7; font-weight: bold; }
 
 /* Cores Estáticas dos Módulos */
 #pulseaudio, #bluetooth, #network, #battery { color: #bac2de; }
+
+/* Módulos de Hardware: CPU, Temperatura da CPU e GPU Nvidia */
+#cpu { color: #a6e3a1; }
+#temperature { color: #fab387; }
+#temperature.critical { color: #f38ba8; }
+#custom-nvidiagpu { color: #74c7ec; }
 
 /* Perfis de Energia */
 #power-profiles-daemon.performance { color: #f38ba8; }

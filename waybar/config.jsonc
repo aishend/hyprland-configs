@@ -3,40 +3,61 @@
     "position": "top",
     "height": 28,
     "spacing": 0,
-    "modules-left": ["hyprland/workspaces", "hyprland/window"],
-    "modules-center": ["clock"],
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window",
+        "mpris"
+    ],
+    "modules-center": [
+        "clock"
+    ],
     "modules-right": [
-        "mpris", 
-        "power-profiles-daemon", 
-        "pulseaudio", 
-        "bluetooth", 
-        "network", 
-        "battery", 
+        // "cpu",
+        "temperature",
+        "custom/nvidiagpu",
+        "power-profiles-daemon",
+        "pulseaudio",
+        "bluetooth",
+        "network",
+        "battery",
         "custom/notification"
     ],
-
     "hyprland/workspaces": {
         "format": "{name}",
         "on-click": "activate"
     },
-
     "hyprland/window": {
         "format": "󱂬 {title}",
         "max-length": 30
     },
-
     "mpris": {
-        "format": "󰎈 {title}",
-        "format-paused": "󰏤 {title}",
-        "max-length": 30,
-        "on-click": "playerctl play-pause"
+        "format": "󰎈 {artist} - {title}",
+        "format-paused": "󰏤 {artist} - {title}",
+        "max-length": 45,
+        "ellipsis": "...",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
     },
-
+    // "cpu": {
+        //"format": " {usage}%",
+        //"interval": 2
+    // },
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "CPU {temperatureC}°C",
+        "format-critical": " {temperatureC}°C"
+    },
+    "custom/nvidiagpu": {
+        "exec": "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits",
+        "format": "GPU {}°C",
+        "interval": 5,
+        "tooltip": false
+    },
     "clock": {
         "format": "{:%a %d %b - %H:%M}",
         "tooltip": false
     },
-
     "power-profiles-daemon": {
         "format": "{icon}",
         "format-icons": {
@@ -46,29 +67,29 @@
             "power-saver": " Eco"
         }
     },
-
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-muted": "󰝟",
-        "format-icons": ["󰕿", "󰖀", "󰕾"],
+        "format-icons": [
+            "󰕿",
+            "󰖀",
+            "󰕾"
+        ],
         "on-click": "rofi-pulse-select sink",
         "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
     },
-
     "bluetooth": {
         "format": "",
         "format-connected": " {device_alias}",
         "format-connected-battery": " {device_alias} {device_battery_percentage}%",
         "on-click": "rofi-bluetooth"
     },
-
     "network": {
         "format-wifi": " {essid}",
         "format-ethernet": "󰈀 Wired",
         "format-disconnected": "󰤮 Disconnected",
         "on-click": "networkmanager_dmenu"
     },
-
     "battery": {
         "interval": 30,
         "format": "{icon} {capacity}%",
@@ -76,9 +97,14 @@
         "format-plugged": "󱐋 {capacity}%",
         "format-discharging": "󰂂 {capacity}%",
         "format-full": "󰁹 100%",
-        "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"]
+        "format-icons": [
+            "󰁺",
+            "󰁼",
+            "󰁾",
+            "󰂀",
+            "󰁹"
+        ]
     },
-
     "custom/notification": {
         "tooltip": false,
         "format": "{icon}",
