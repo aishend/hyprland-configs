@@ -8,7 +8,6 @@
     "modules-right": [
         "mpris", 
         "power-profiles-daemon", 
-        "custom/updates", 
         "pulseaudio", 
         "bluetooth", 
         "network", 
@@ -46,15 +45,6 @@
             "balanced": " Bal",
             "power-saver": " Eco"
         }
-    },
-
-    "custom/updates": {
-        "format": "󰚰 {}",
-        "interval": 3600,
-        "exec": "checkupdates | wc -l",
-        "exec-if": "exit 0",
-        "on-click": "hyprctl dispatch exec [float] 'foot -e yay -Syu'",
-        "tooltip": false
     },
 
     "pulseaudio": {

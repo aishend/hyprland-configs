@@ -30,7 +30,6 @@ window#waybar {
 /* Margens de todos os módulos da direita */
 #mpris, 
 #power-profiles-daemon, 
-#custom-updates, 
 #pulseaudio, 
 #bluetooth, 
 #network, 
@@ -42,9 +41,6 @@ window#waybar {
 
 /* Leitor de Música */
 #mpris { color: #cba6f7; font-weight: bold; }
-
-/* Contador de Atualizações */
-#custom-updates { color: #f9e2af; }
 
 /* Cores Estáticas dos Módulos */
 #pulseaudio, #bluetooth, #network, #battery { color: #bac2de; }
