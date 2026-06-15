@@ -15,7 +15,11 @@
 !Code/
 !Code/User/
 !Code/User/settings.json
+!fish/
+!fish/config.fish
 !kitty/
 !kitty/kitty.conf
 !fastfetch/
 !fastfetch/config.jsonc
+!fastfetch/ascii/
+!fastfetch/ascii/**
