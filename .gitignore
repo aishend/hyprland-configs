@@ -12,3 +12,6 @@
 !waybar/**
 !xdg-desktop-portal/
 !xdg-desktop-portal/**
+!Code/
+!Code/User/
+!Code/User/settings.json

@@ -19,8 +19,9 @@ if [ "$wifi_enabled" = "disabled" ]; then
     exit
 fi
 
-# Scan and build network list: ● connected, ○ available
-entries=$(nmcli -t -f IN-USE,SSID,SIGNAL,SECURITY dev wifi list 2>/dev/null | while IFS=: read -r in_use ssid signal security; do
+# Build network list from cache (--rescan no avoids the 3-5 s hardware scan).
+# NetworkManager rescans automatically in the background every ~30 s.
+entries=$(nmcli -t -f IN-USE,SSID,SIGNAL,SECURITY dev wifi list --rescan no 2>/dev/null | while IFS=: read -r in_use ssid signal security; do
     [ -z "$ssid" ] && continue
     if [ "$in_use" = "*" ]; then
         echo "● $ssid  (${signal}%) ${security}"

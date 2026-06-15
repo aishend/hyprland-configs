@@ -1,0 +1,6 @@
+{
+    "files.autoSave": "afterDelay",
+    "claudeCode.preferredLocation": "panel",
+    "explorer.confirmDelete": false,
+    "workbench.colorTheme": "Ayu Dark Bordered"
+}

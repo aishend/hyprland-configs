@@ -24,7 +24,7 @@
 -- ---------------------------------------------------------------------
 mainMod     = "SUPER"
 terminal    = "kitty"
-fileManager = "dolphin"
+fileManager = "nautilus"
 menu        = "rofi -show drun -theme ~/.config/rofi/themes/default.rasi"
 scriptDir   = "~/.config/hypr/scripts"
 

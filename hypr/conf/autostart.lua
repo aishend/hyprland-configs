@@ -17,6 +17,8 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
     hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme prefer-dark")
     hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark")
+    -- Small delay ensures the compositor socket is ready before setting the wallpaper.
+    -- If the wallpaper does not appear on login, increase the sleep value (e.g. sleep 2).
     hl.exec_cmd("sleep 1 && hyprctl hyprpaper wallpaper ',~/.config/hypr/wallpapers/gradient.jpg'")
     hl.exec_cmd("firefox")
 end)

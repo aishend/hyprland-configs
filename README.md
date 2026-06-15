@@ -11,7 +11,7 @@ Personal Hyprland dotfiles written in **Lua** (requires Hyprland v0.55+). Tested
 | Window manager | [Hyprland](https://hyprland.org) v0.55+ |
 | Status bar | [Waybar](https://github.com/Alexays/Waybar) |
 | Terminal | [Kitty](https://sw.kovidgoyal.net/kitty/) |
-| File manager | Dolphin |
+| File manager | Nautilus |
 | App launcher | Rofi (Wayland build) |
 | Screenshots | Grim + Slurp |
 | Wallpaper | Hyprpaper |
@@ -21,6 +21,7 @@ Personal Hyprland dotfiles written in **Lua** (requires Hyprland v0.55+). Tested
 | Audio | Pipewire + WirePlumber |
 | Bluetooth | Blueman |
 | Font | JetBrainsMono Nerd Font |
+| Editor | VS Code (Ayu Dark Bordered) |
 
 ---
 
@@ -29,7 +30,7 @@ Personal Hyprland dotfiles written in **Lua** (requires Hyprland v0.55+). Tested
 > Arch Linux (or Arch-based). Run as your normal user, not root.
 
 ```bash
-sudo pacman -S --needed hyprland waybar kitty dolphin rofi-wayland grim slurp hyprpaper hypridle hyprlock swaync hyprpolkitagent xdg-desktop-portal-hyprland xdg-desktop-portal-gtk pipewire wireplumber blueman wl-clipboard jq playerctl brightnessctl networkmanager qt5ct ttf-jetbrains-mono-nerd && git clone https://github.com/aishend/hyprland-configs.git /tmp/hyprland-configs && cp -r /tmp/hyprland-configs/* ~/.config/ && chmod +x ~/.config/hypr/scripts/*.sh ~/.config/waybar/scripts/*.sh && systemctl --user enable --now hyprpolkitagent hypridle hyprpaper waybar swaync
+sudo pacman -S --needed hyprland waybar kitty nautilus rofi grim slurp hyprpaper hypridle hyprlock swaync hyprpolkitagent xdg-desktop-portal-hyprland xdg-desktop-portal-gtk pipewire pipewire-alsa pipewire-pulse wireplumber power-profiles-daemon blueman wl-clipboard jq playerctl brightnessctl networkmanager qt5ct ttf-jetbrains-mono-nerd fastfetch imagemagick && git clone https://github.com/aishend/hyprland-configs.git /tmp/hyprland-configs && cp -r /tmp/hyprland-configs/* ~/.config/ && chmod +x ~/.config/hypr/scripts/*.sh ~/.config/waybar/scripts/*.sh && systemctl --user enable --now hyprpolkitagent hypridle hyprpaper waybar swaync
 ```
 
 Then log out and select **Hyprland** from your display manager.
@@ -41,11 +42,12 @@ Then log out and select **Hyprland** from your display manager.
 ### 1 — Install packages
 
 ```bash
-sudo pacman -S hyprland waybar kitty dolphin rofi-wayland grim slurp \
+sudo pacman -S hyprland waybar kitty nautilus rofi grim slurp \
     hyprpaper hypridle hyprlock swaync hyprpolkitagent \
     xdg-desktop-portal-hyprland xdg-desktop-portal-gtk \
-    pipewire wireplumber blueman wl-clipboard jq playerctl brightnessctl \
-    networkmanager qt5ct ttf-jetbrains-mono-nerd
+    pipewire pipewire-alsa pipewire-pulse wireplumber \
+    power-profiles-daemon blueman wl-clipboard jq playerctl brightnessctl \
+    networkmanager qt5ct ttf-jetbrains-mono-nerd fastfetch imagemagick
 ```
 
 ### 2 — Deploy config
@@ -71,7 +73,19 @@ Place your wallpaper at `~/.config/hypr/wallpapers/gradient.jpg`, or edit the pa
 - `hypr/hyprpaper.conf` — preload and initial assignment
 - `hypr/conf/autostart.lua` — the `hyprctl hyprpaper wallpaper` line
 
-### 5 — Log in
+> **Wallpaper not appearing?** The `sleep 1` in `autostart.lua` waits for the compositor socket before setting the wallpaper. On slower machines it may need more time — increase it to `sleep 2` or `sleep 3`.
+
+### 5 — VS Code theme
+
+Install the Ayu extension:
+
+```bash
+code --install-extension teabyii.ayu
+```
+
+The theme (`Ayu Dark Bordered`) is applied automatically via `Code/User/settings.json`.
+
+### 6 — Log in
 
 Log out and select **Hyprland** from your display manager.
 
@@ -179,7 +193,7 @@ cursor = { no_hardware_cursors = true },
 |----------|--------|
 | `Super + A` | App launcher (Rofi) |
 | `Super + T` | Terminal (Kitty) |
-| `Super + E` | File manager (Dolphin) |
+| `Super + E` | File manager (Nautilus) |
 | `Super + B` | Browser (Firefox) |
 | `Super + Q` | Close window |
 | `Super + V` | Toggle floating |
