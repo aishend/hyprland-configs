@@ -18,8 +18,9 @@ Personal Hyprland dotfiles written in **Lua** (requires Hyprland v0.55+). Tested
 | Idle / lock screen | Hypridle + Hyprlock |
 | Notifications | Swaync |
 | Polkit agent | Hyprpolkitagent |
-| Audio | Pipewire + WirePlumber |
+| Audio | Pipewire + WirePlumber + Pavucontrol |
 | Bluetooth | Blueman |
+| System monitor | Btop |
 | Font | JetBrainsMono Nerd Font |
 | Editor | VS Code (Ayu Dark Bordered) |
 
@@ -30,7 +31,7 @@ Personal Hyprland dotfiles written in **Lua** (requires Hyprland v0.55+). Tested
 > Arch Linux (or Arch-based). Run as your normal user, not root.
 
 ```bash
-sudo pacman -S --needed hyprland waybar kitty nautilus rofi grim slurp hyprpaper hypridle hyprlock swaync hyprpolkitagent xdg-desktop-portal-hyprland xdg-desktop-portal-gtk pipewire pipewire-alsa pipewire-pulse wireplumber power-profiles-daemon blueman wl-clipboard jq playerctl brightnessctl networkmanager qt5ct ttf-jetbrains-mono-nerd fastfetch imagemagick && git clone https://github.com/aishend/hyprland-configs.git /tmp/hyprland-configs && cp -r /tmp/hyprland-configs/* ~/.config/ && chmod +x ~/.config/hypr/scripts/*.sh ~/.config/waybar/scripts/*.sh && systemctl --user enable --now hyprpolkitagent hypridle hyprpaper waybar swaync
+sudo pacman -S --needed hyprland uwsm waybar kitty nautilus rofi grim slurp hyprpaper hypridle hyprlock swaync hyprpolkitagent xdg-desktop-portal-hyprland xdg-desktop-portal-gtk pipewire-alsa pipewire-pulse wireplumber power-profiles-daemon blueman wl-clipboard jq playerctl brightnessctl networkmanager qt5ct ttf-jetbrains-mono-nerd && git clone https://github.com/aishend/hyprland-configs.git /tmp/hyprland-configs && cp -r /tmp/hyprland-configs/* ~/.config/ && chmod +x ~/.config/hypr/scripts/*.sh ~/.config/waybar/scripts/*.sh && systemctl --user enable --now hyprpolkitagent hypridle hyprpaper waybar swaync
 ```
 
 Then log out and select **Hyprland** from your display manager.
@@ -41,13 +42,21 @@ Then log out and select **Hyprland** from your display manager.
 
 ### 1 — Install packages
 
+**Required** — the config will not work without these:
+
 ```bash
-sudo pacman -S hyprland waybar kitty nautilus rofi grim slurp \
+sudo pacman -S --needed hyprland uwsm waybar kitty nautilus rofi grim slurp \
     hyprpaper hypridle hyprlock swaync hyprpolkitagent \
     xdg-desktop-portal-hyprland xdg-desktop-portal-gtk \
-    pipewire pipewire-alsa pipewire-pulse wireplumber \
-    power-profiles-daemon blueman wl-clipboard jq playerctl brightnessctl \
-    networkmanager qt5ct ttf-jetbrains-mono-nerd fastfetch imagemagick
+    pipewire-alsa pipewire-pulse wireplumber \
+    power-profiles-daemon wl-clipboard jq playerctl brightnessctl \
+    networkmanager qt5ct ttf-jetbrains-mono-nerd
+```
+
+**Optional** — useful extras, install what you need:
+
+```bash
+sudo pacman -S --needed blueman pavucontrol btop fastfetch
 ```
 
 ### 2 — Deploy config
